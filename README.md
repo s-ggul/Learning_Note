@@ -2,7 +2,7 @@
 
 - Programming Language
   - C#
-  - JavaScript
+  - Javascript(Js)
 
 - Computer Science
   - Network
