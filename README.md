@@ -1,7 +1,15 @@
 ## Learning_Note for everyday study
 
 - Programming Language
+  - C#
+  - JavaScript
+
 - Computer Science
-- Alogrithms
+  - Network
+  - OS
+  - Database 
+  - Alogrithms
+
 - Interview Question 
-- Frontend Study(About Interactive)
+  
+- Frontend Study(with Interactive)
