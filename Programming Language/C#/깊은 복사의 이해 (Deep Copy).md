@@ -1,0 +1,75 @@
+## 깊은 복사의 이해 (Deep Copy)
+
+-  Value Type => Stack memory에 저장
+-  Reference Type => Heap memory에 저장
+
+[Ex.1 - Shallow Copy]
+```Csharp
+Demo1 demo1 = new Demo1();
+demo1.aa = 100;
+demo1.bb = 1000;
+
+//Shallow Copy
+Demo1 demo2 = demo1;
+demo2.bb = 1111;
+
+Console.WriteLine("{0} {1}", demo1.aa, demo1.bb);
+Console.WriteLine("{0} {1}", demo2.aa, demo2.bb);
+```
+```result
+Output
+
+100 1111
+100 1111
+```
+
+- demo1 은 aa 와 bb의 주소값을 가지고 있고, aa와 bb의 값은 heap 메모리에 저장되어 있다.
+- 따라서 위와 같은 복사는 demo1에 저장된 heap메모리의 주소를 demo2에 할당한 것이고, demo2 는 demo1과 마찬가지로 같은 주소를 가리키고 있다. 따라서 demo2 객체를 통해 bb의 값을 바꿔도 demo1과 demo2가 동시에 가리키고 있는 주소에 해당하는 변수값이 바뀐것 => Shallow Copy
+
+[Ex.2 Deep Copy]
+```Csharp
+        class Demo1
+        {
+            public int aa;
+            public int bb;  
+        
+            public Demo1 DeepCopy()
+            {
+                Demo1 newDemo1 = new Demo1();  
+                newDemo1.aa = this.aa;
+                newDemo1.bb = this.bb;  
+                return newDemo1;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Demo1 demo1 = new Demo1();
+            demo1.aa = 100;
+            demo1.bb = 1000;
+
+            //Shallow Copy
+            Demo1 demo2 = demo1;
+            demo2.bb = 1111;
+
+            //Deep Copy
+            Demo1 demo3 = demo1.DeepCopy();
+            demo3.bb = 2222;
+
+            Console.WriteLine("{0} {1}", demo1.aa, demo1.bb);
+            Console.WriteLine("{0} {1}", demo2.aa, demo2.bb);
+            Console.WriteLine("{0} {1}", demo3.aa, demo3.bb);
+        }
+```
+```result
+Output
+
+100 1111
+100 1111
+100 2222
+```
+
+- demo1에서 DeepCopy 메소드를 통해 새로운 객체를 생성하고 demo3에게 해당 객체를 넘겨 새로운 객체가 가지는 필드들의 주소를 가리키게 하여 서로 다른 객체가 같은 필드의 주소를 포인팅하게 하지 않는다. => Deep Copy
+
+#### 결론
+
+- 클래스는 기본적으로 참조형식을 취하고 있기 때문에 일반 다른 변수처럼 데이터를 할당할 때는 참조형식의 방식을 취하는 Heap memory 저장방식을 사용한다 => Heap Memory 저장방식 = Deep Copy
