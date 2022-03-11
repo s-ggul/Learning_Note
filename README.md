@@ -2,7 +2,7 @@
 
 - Programming Language
   - [C#](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/C%23)
-  - [Java](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/Java%20%26%20Kotlin)
+  - [Java & Kotlin](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/Java%20%26%20Kotlin)
   - [Javascript(Js)](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/Javascript)
 
 - Computer Science
