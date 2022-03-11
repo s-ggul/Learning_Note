@@ -1,0 +1,108 @@
+## 접근제한자(Access Modifier)
+
+```csharp
+namespace AccessModifierEx
+{
+    class Demo
+    {
+        public Demo()
+        {
+            // 클래스 자체 내부에서 접근
+
+            Demo.public_method();
+            Demo.private_method();
+            Demo.protected_method();
+            Demo.internal_method();
+            Demo.protected_internal_method();
+            Demo.private_protected_method();
+
+            // 자체 클래스 내부에서는 접근하는데에 문제가 없음.
+        }
+
+        // public 접근 제한자
+        public static void public_method(){}
+
+        // private 접근 제한자
+        private static void private_method(){}
+
+        // protected 접근 제한자
+        protected static void protected_method(){}
+
+        // internal 접근 제한자
+        internal static void internal_method(){}
+
+        // protected internal 접근 제한자
+        protected internal static void protected_internal_method(){}
+
+        // private protected 접근 제한자
+        private protected static void private_protected_method(){}
+    }
+
+    class Demo2 : Demo
+    {
+        public Demo2()
+        {   
+            // 상속받은 자식(파생) 클래스에서 접근
+
+            Demo.public_method();
+            Demo.protected_method();
+            Demo.internal_method();
+            Demo.protected_internal_method();
+            Demo.private_protected_method();
+            
+            // 이 클래스 파일은 같은 컴파일러에서 어셈블리로 만들어지기에 총 5개 메소드 접근가능
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // 상속받지 않은 외부클래스에서 접근
+            Demo.public_method();
+            Demo.internal_method();
+            Demo.protected_internal_method();
+
+            // Main 문도 결국 같은 어셈블리내에 존재함.
+            // 따라서, public을 포함한 총 3개 메소드 접근가능
+         }
+    }
+}
+```
+
+
+- `접근제한자`나 `한정자`라고 표현하기도 한다.
+- 영문 표기로 `Access Modifier` 라고 한다.
+- `접근제한자`는 공개수준을 정하여 `접근을 제한`하는 키워드를 말한다.
+- 종류로는 `public, private, protected, internal, protected internal, private protected` 가 있다.
+- `public`, `private`, `protected`를 주로 사용
+
+<br />
+
+★★★ 클래스 멤버에 한정자가 설정되지 않았을 경우에는 무조건 `private`으로 자동 지정된다. 
+
+<br />
+
+- `public` : 
+  - 클래스의 내부 또는 외부 모든 곳에서 접근할 수 있는 지정자
+<br />
+- `private` : 
+  - 캡슐화할때 주로 사용하며 클래스 외부에서는 접근할 수 없도록 하는 지정자
+  - 즉, 내부에서만 접근이 가능하도록 하는 지정자
+  - 또한 상속받은 자식(파생) 클래스에서도 접근할 수 없다.
+ <br />
+- `protected` : 
+  - 클래스 외부에서는 접근할 수 없는 지정자
+  - 단, 상속받은 자식(파생) 클래스에서는 접근할 수 있도록 하는 지정자.
+<br />
+- `internal` : 
+  - 동일 어셈블리에 있는 코드에서만 public으로 접근할 수 있도록 하는 지정자.
+  - 다른 어셈블리에 있는 코드에서는 private과 같은 접근 수준을 가지기에 접근이 안됨.
+  - 또한 internal 키워드가 같은 namespace 내에서만 접근가능하다는 말은 틀린말임.
+<br />
+- `protected internal` :
+  - 동일 어셈블리에 있는 코드에서만 protected로 접근할 수 있는 지정자
+<br />
+- `private protected` : 
+  - 동일 어셈블리에 있는 클래스에서 상속받은 클래스 내부에서만 접근이 가능  
+       
