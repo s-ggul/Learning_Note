@@ -1,2 +1,106 @@
 ## this, this() 생성자
 
+<br />
+#### this 키워드
+
+```csharp
+namespace ThisEx
+{
+
+    class Student
+    {
+        private string name;
+        private string grade;
+
+        public void SetName(String name)
+        {
+            this.name = name;
+            //name = name 형태로 사용하면 매개변수 name인지 클래스내 name인지 판별할 수 없다.
+            // this.name 은 student 클래스 내 선언된 name
+        }
+
+        public string GetName()
+        {
+            return name;
+            // 이 경우 student 내의 name임은 자명하다.
+        }
+
+        public void SetGrade(string grade)
+        {
+            this.grade = grade; 
+        }
+
+        public string GetGrade()
+        {
+            return grade;   
+        }
+
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //this : 객체가 자신을 지칭할 때 사용하는 키워드이다.
+
+            Student kim = new Student();
+            kim.SetName("김길동");
+            kim.SetGrade("Senior");
+
+            Console.WriteLine(kim.GetName()); 
+            Console.WriteLine(kim.GetGrade());
+            Console.WriteLine($"{kim.GetName()} {kim.GetGrade()}");
+        }
+    }
+}
+```
+- `this` : 객체가 자기 자신을 지칭할 때 사용하는 키워드
+- `set`함수와 같이 매개변수로 필드의 이름과 같은 변수로 값을 받게 되면 객체내에서 어떤 매개변수인지 구분해주기 위해 `this`를 사용
+- `setName()` 에서 `name = name` 형태로 사용하면 매개변수 `name`인지 클래스 내 `name`인지 판별할 수 없다.
+- `this.name` 을 사용하여 `student` 클래스 내 선언된 `name`임을 명확하게 해주어야 문제가 없다.
+<br />
+#### this() 생성자
+
+```csharp
+namespace ThisEx2
+{
+    class Demo
+    {
+        public int a, b, c;
+
+        public Demo()
+        {
+            this.a = 100;
+        }
+
+        public Demo(int b) : this() // 자신의 앞쪽에 있는 생성자를 지칭하는 this() 생성자
+        {                           // 이 경우 앞쪽의 Demo()를 가리킴 
+            //this.a = 100;
+            this.b = b;
+        }
+
+        public Demo(int b, int c) : this(b) // 이 경우 앞쪽의 Demo(int b) 를 가리킴
+        {                                   // 똑같은 이름의 매개변수 b를 넣어줘야함
+                                            // 맨 앞의 Demo()를 가리키고 싶다면 this()를 써줘야함. 
+            //this.a = 100;
+            //this.b = b;
+            this.c = c;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // this() 생성자
+            Demo demo = new Demo(200, 300);
+
+            Console.WriteLine(demo.a);
+            Console.WriteLine(demo.b);
+            Console.WriteLine(demo.c);
+        }
+    }
+}
+```
+
+- this() 생성자는 자신보다 앞쪽에 있는 생성자를 지칭할 때 사용함.
+- 만일 Overloading된 생성자가 많은 경우 this() 생성자 내에 매개변수를 추가해 줌으로써 상속받는 생성자를 구분할 수 있음. (단, 이 경우 매개변수 이름은 앞쪽 생성자의 매개변수 이름을 따라야함.)
