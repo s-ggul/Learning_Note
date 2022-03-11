@@ -1,0 +1,77 @@
+## base키워드와 sealed한정자
+
+```csharp
+namespace inheritEx2
+{
+    // 기반(부모) 클래스의 매개변수가 있는 생성자에게
+    // 파생(자식) 클래스의 생성자에서 인자를 전달하는 방법
+
+    /*
+     C# 에서는 부모 클래스 생성자 중에서 사용자 지정 생성자(매개변수가 있는 생성자)가
+    존재 할 때 부모 클래스 생성자의 매개변수 (Ex. 매개변수 = p) 를 자식클래스에서 전달하여 활용할 수 있다. 
+     즉, 자식 클래스의 인스턴스(부모클래스를 상속받고 있는경우)를 생성할때 부모클래스에 매개변수를 전달하여 초기화 할 수 있음.
+     cf) Java? Python인가? 거기서 봤던 super() 같은 것인듯함.
+     */
+
+    /* sealed */ class Parent 
+        // 이와 같이 `sealed` 키워드를 이용하면 
+        // 컴파일러에서 에러를 발생시켜 상속을 불가능하게 한다.
+        // 이렇게 sealed를 클래스에 이용하면 봉인한다 라고 한다.
+    {
+        protected string name;
+        public Parent(string name)
+        {
+            this.name = name;
+            Console.WriteLine($"{this.name}.Parent()");
+        }
+
+        public void parent_method()
+        {
+            Console.WriteLine("parent method");
+        }
+    }
+
+    class Child : Parent
+    {
+        public Child(string name) : base(name) 
+            // base는 부모 클래스에 접근할 때 사용
+        {   // 이렇게 선언하면 Child(name)의 매개변수 name을 부모의 생성자로 전달하며 호출한것
+            Console.WriteLine($"{this.name}.Child()");
+        }
+
+        // base 키워드는 기반 클래스를 가리키는 키워드이다.
+        //따라서, 기반클래스의 멤버를 접근할 때 사용할 수 있다.
+
+        public void child_method()
+        {
+            Console.WriteLine("child method");
+            base.parent_method(); 
+            //base 키워드를 이용해 부모클래스의 메소드도 호출할 수 있다.
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Child child = new Child("아이");
+            child.child_method();
+        }
+    }
+}
+```
+<br />
+
+- `base` : 기반(부모)클래스를 가리키는 키워드이다. `base` 키워드를 통해 기반클래스의 멤버(필드 혹은 메소드)를 접근할 때 사용할 수 있다. `코드 참고할 것!`
+
+<br />
+
+- `sealed` : 기반(부모)클래스에 사용하는 키워드로 이를 통해 컴파일러에서 에러를 발생시켜 클래스의 상속을 불가능하게 한다. `sealed` 키워드를 클래스에 이용하여 `봉인한다` 라고 일컫는다.
+
+<br />
+
+- `기반(부모)클래스`의 매개변수가 있는 생성자에게 `파생(자식)클래스`의 생성자에서 인자를 전달하는 방식에 `base`와 `sealed`를 사용한다.
+
+<br />
+
+-  `C#` 에서는 부모 클래스 생성자 중에서 사용자 지정 생성자(매개변수가 있는 생성자)가 존재 할 때 부모 클래스 생성자의 매개변수 (Ex. 매개변수 = p) 를 자식클래스에서 전달하여 활용할 수 있다. 즉, 자식 클래스의 인스턴스(부모클래스를 상속받고 있는경우)를 생성할때 부모클래스에 매개변수를 전달하여 초기화 할 수 있음. cf) Java? Python인가? 거기서 봤던 `super()` 같은 것 인듯함.  
+ 
