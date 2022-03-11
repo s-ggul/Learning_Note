@@ -1,8 +1,9 @@
 ## Learning_Note for everyday study
 
 - Programming Language
-  - C#
-  - Javascript(Js)
+  - [C#](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/C%23)
+  - [Java]
+  - [Javascript(Js)](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/Javascript)
 
 - Computer Science
   - Network
