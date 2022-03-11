@@ -3,7 +3,7 @@
 - Programming Language
   - [C#](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/C%23)
   - [Java]
-  - [Javascript(Js)]
+  - [Javascript(Js)](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/Javascript)
 
 - Computer Science
   - Network
