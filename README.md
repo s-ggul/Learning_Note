@@ -6,10 +6,10 @@
   - [Javascript(Js)](https://github.com/Dudu-Kim/Learning_Note/tree/main/Programming%20Language/Javascript)
 
 - Computer Science
-  - Network
-  - OS
-  - Database 
-  - Alogrithms
+  - [Network](https://github.com/Dudu-Kim/Learning_Note/tree/main/Computer%20Science/Network)
+  - [OS](https://github.com/Dudu-Kim/Learning_Note/tree/main/Computer%20Science/OS)
+  - [Database](https://github.com/Dudu-Kim/Learning_Note/tree/main/Computer%20Science/Database)
+  - [Alogrithms](https://github.com/Dudu-Kim/Learning_Note/tree/main/Computer%20Science/Alogrithms)
 
 - Interview Question 
   
