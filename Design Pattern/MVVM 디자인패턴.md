@@ -8,6 +8,9 @@ https://kaki104.tistory.com/531 -
 `View Model` - View의 추상화 클래스로 비즈니스 로직이 구현되어 있음.
 ```
 
+- MVVM 패턴은 WPF(Windows Presentation Foundation)에서 주로 사용.
+
+
 - `View`에는 `Control`이라는 `Component`의 집합이 있다. => 즉, 여기서 `Control`은 `Controller`가 아닌 화면 UI에 출력되는 `Component`들의 집합 => `user` 입장에서의 `Control`
 
 - 코드 비하인드는 이러한 컴포넌트들이 구성된 코드를 말한다.
