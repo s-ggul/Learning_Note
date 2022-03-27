@@ -131,3 +131,5 @@ child : Column(mainAxisAlignment: MainAxisAlignment.center,
 ```
 
 - `child`에서 `column`을 이용해 틀을 잡고 `children`에서 `Text()`를 통해 텍스트들을 정렬해준다. 이때 `Text()` 내부에 텍스트별 스타일을 지정할 수도 있다.
+
+<!--여기까지가 6번째 강의까지의 내용-->
