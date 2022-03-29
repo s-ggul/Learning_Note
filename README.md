@@ -14,31 +14,4 @@
 
 - Interview Question 
   
-- Frontend Study(with Interactive)
-
-
-
-
--------------------------
-
-## TIL web made by Vuepress
-
-Today I Learned(TIL)
-
-## ✏️ TIL for everyday study :orange_book:
-
-- Programming Language
-  - [:paperclip: C#]()
-  - [:paperclip: Flutter-Dart]()
-  - [:paperclip: Java & Kotlin]()
-  - [:paperclip: Javascript(Js)]()
-
-- Computer Science
-  - [:paperclip: Network]()
-  - [:paperclip: OS]()
-  - [:paperclip: Database]()
-  - [:paperclip: Alogrithms]()
-
-- Interview Question 
-  
-- Frontend Study(with Interactive)
+- Frontend Study(with Interactive
