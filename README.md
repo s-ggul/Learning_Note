@@ -1,4 +1,4 @@
-## Learning_Note for everyday study
+## Today I Learned
 
 - Programming Language
   - [C#](https://github.com/s-ggul/Learning_Note/tree/main/Programming%20Language/C%23)
