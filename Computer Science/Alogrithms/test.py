@@ -1,35 +1,39 @@
 n = int(input())
-cards = list(map(int, input().split()))
-m = int(input())
-cardType = list(map(int, input().split()))
 
-cards.sort()
-searchResult = dict()
+q = list()
 
-for t in cardType:
-    searchResult[str(t)] = 0
-
-def binarySearch (data, num):
-    low = 0
-    high = len(data) - 1
-
-    while low <= high:
-        mid = (low + high) // 2
-
-        if data[mid] == num :
-            searchResult[str(num)] += 1
-            del data[mid]
-            data.append(10000001)
-        
-        elif num > data[mid] :
-            low = mid + 1
-
-        elif num < data[mid] : 
-            high = mid - 1
- 
-for target in cardType:
-    binarySearch(cards, target)
-
-for t in cardType:
-    print(searchResult[str(t)], end=' ')
+while n > 0:
+    cmd = input()
+    val = ''
     
+    if ' ' in cmd:
+        cmd, val = cmd.split()
+        val = int(val)
+    
+    if cmd == 'push':
+        q.append(val)
+    elif cmd == 'pop':
+        if len(q) == 0:
+            print(-1)
+        else:    
+            print(q[0])
+            del q[0]
+    elif cmd == 'size':
+        print(len(q))
+    elif cmd == 'empty':
+        if len(q) == 0:
+            print(1)
+        else:
+            print(0)
+    elif cmd == 'front':
+        if len(q) == 0:
+            print(-1)
+        else:
+            print(q[0])
+    elif cmd == 'back':
+        if len(q) == 0:
+            print(-1)
+        else:
+            print(q[len(q)-1])
+
+    n -= 1
