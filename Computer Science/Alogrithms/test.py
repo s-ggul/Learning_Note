@@ -20,7 +20,6 @@ def binarySearch (data, num):
             searchResult[str(num)] += 1
             del data[mid]
             data.append(10000001)
-            break
         
         elif num > data[mid] :
             low = mid + 1
