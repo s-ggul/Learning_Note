@@ -32,9 +32,6 @@ def binarySearch(data, num):
 ### 이진탐색 사용 예시 코드
 
 ```python
-from re import L
-
-
 n = int(input())
 data1 = list(map(int,input().split()))
 m = int(input())
