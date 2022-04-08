@@ -119,7 +119,7 @@ def binarySearch(data, n2):
 
     while (low <= high): 
         # while 조건을 단순히 low 가 작은 경우로만 해주면 high와 low가 같은 경우의 값은 비교를 진행하지 않음
-        # 이진탐색 조건을 잘 생각해보자 될 수 있으면 low <= high 으로 사용하자
+        # 이진탐색 조건을 잘 생각해보자. 그리고 가능한 low <= high 으로 사용해보자
         mid = (low + high) // 2
         total = 0
         for kl in data:
