@@ -136,3 +136,93 @@ binarySearch(kLength, n)
 
 print(max(result))
 ```
+
+2805 나무자르기
+
+```python
+n, m = map(int,input().split())
+
+treeHeight = list(map(int, input().split()))
+
+# 적어도 M미터의 나무를 집에 가져가기 위해서 절단기에 설정할 수 있는 높이의 최댓값을 출력한다.
+treeHeight.sort()
+resultList=list()
+
+def binarySearch(data, m2):
+    low = 1 
+    # m은 1<= m <= 2,000,000,000
+    high = data[len(data)-1]
+    # n도 1이상이기에 입력된 데이터중 가장 큰값의 경우 그 값보다 1 더 작은값부터 그 밑의 값까지 탐색하면 되므로 가장 큰값을 끝값으로 지정해주면 된다.
+    result = 0
+
+    while low <= high:       
+        mid = (low + high) // 2
+        # 여기서의 mid 값이 절단기에 설정할 높이 H 
+        totalM = 0
+        for tree in data:
+            if tree > mid:
+                totalM += (tree - mid)
+            # tree길이가 mid 보다 클때만 빼주도록 조건문 설정 => totalM에 음수값을 더하지 않도록
+
+        if totalM >= m2:
+            # mid(H) 값을 높여서 탐색해야함
+            if result < mid :
+                result = mid
+            low = mid + 1
+        else:
+            high = mid - 1
+    return result
+
+#print(max(resultList))
+#이렇게 max () 를 사용했을때 콜스택 초과가 나는 경우가 있을 수도 있음 따라서 값을 계속 변경해줄것.
+# mix 나 max의 인자에 제한이 없는것 같지만 실제 인자가 무수히 많아지게 된다면 콜스택 초과 에러가 발생할 수 있다.
+
+print(binarySearch(treeHeight, m))
+```
+
+15829 Hashing
+```python
+n = int(input())
+word = input()
+
+result = 0
+
+alpha = {
+    'a':1,
+    'b':2,
+    'c':3,
+    'd':4,    
+    'e':5,
+    'f':6,
+    'g':7,
+    'h':8,
+    'i':9,
+    'j':10,
+    'k':11,
+    'l':12,
+    'm':13,
+    'n':14,
+    'o':15,
+    'p':16,
+    'q':17,
+    'r':18,
+    's':19,
+    't':20,
+    'u':21,
+    'v':22,
+    'w':23,
+    'x':24,
+    'y':25,
+    'z':26,
+    }
+
+for i in range(len(word)):
+    result += alpha[word[i]] * (31**i)
+
+print(result % 1234567891)
+```
+
+18111 마인크래프트
+```python
+
+```
