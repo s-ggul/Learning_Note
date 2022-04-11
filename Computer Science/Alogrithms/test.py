@@ -1,53 +1,29 @@
 import sys
-n, m, b = map(int,sys.stdin.readline().rstrip().split())
+n = int(sys.stdin.readline().rstrip())
+#dp문제
+data = {i : 0 for i in range(41)}
+# 숫자의 최대값이 40 
 
-groundHeight = [list(map(int,sys.stdin.readline().rstrip().split())) for i in range(n)]
+result = [[0, 0] for i in range(41)]
 
-#numOfH ={i:0 for i in range(257)}
-linearGround = []
+result[0][0] = 1
+result[1][1] = 1  
 
-minH = 256
-maxH = 0
+def fibo(n):
+    if n == 0:        
+        return 0
+    elif n == 1:
+        return 1
+    elif result[n][0] > 0 and result[n][1] > 0:
+        return data[n] 
+    else:
+        data[n] = fibo(n-1) + fibo(n-2)
+        result[n][0], result[n][1] = result[n-1][0] + result[n-2][0], result[n-1][1] + result[n-2][1]
+        return data[n]
 
-for raw in groundHeight :
-    if min(raw) < minH:
-        minH = min(raw)
-    elif max(raw) > maxH:
-        maxH = max(raw)     
-    for h in raw:
-        linearGround.append(h)
+for i in range(n):
+    num = int(sys.stdin.readline().rstrip())
 
-linearGround.sort(reverse=True)
-
-result = (-1, -1)
-
-while minH <= maxH :
-    totalT = 0
-    tempB = b
-    flag = True
-    for h in linearGround:
-        if h > minH or tempB == 0:
-            totalT += (h - minH) * 2
-            tempB += (h - minH)
-        elif h < minH and tempB >= (minH-h):
-            totalT += (minH - h)
-            tempB -= (minH - h)
-        elif h == minH:
-            continue
-        else : 
-            flag = False 
-            break    
-
-    if tempB >= 0 and flag:
-        if result[0] == -1 :
-            result = (totalT, minH)
-        elif result[0] > totalT :
-            result = (totalT, minH)
-        elif result[0] == totalT and result[1] < minH:
-            result = (totalT, minH)
-
-    minH += 1
-
-print(result[0], result[1])
-
-[pypy vs python 참고](https://ralp0217.tistory.com/entry/Python3-%EC%99%80-PyPy3-%EC%B0%A8%EC%9D%B4)
+    fibo(num)
+    
+    sys.stdout.write(str(result[num][0]) +' '+ str(result[num][1]) +'\n')
