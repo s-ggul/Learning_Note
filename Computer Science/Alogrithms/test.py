@@ -1,6 +1,8 @@
+#백준 1003 번
+#dp문제
+
 import sys
 n = int(sys.stdin.readline().rstrip())
-#dp문제
 data = {i : 0 for i in range(41)}
 # 숫자의 최대값이 40 
 
@@ -14,7 +16,7 @@ def fibo(n):
         return 0
     elif n == 1:
         return 1
-    elif result[n][0] > 0 and result[n][1] > 0:
+    elif data[n] > 0:
         return data[n] 
     else:
         data[n] = fibo(n-1) + fibo(n-2)
