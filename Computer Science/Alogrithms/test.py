@@ -1,31 +1,38 @@
-#백준 1003 번
-#dp문제
+from collections import deque
 
-import sys
-n = int(sys.stdin.readline().rstrip())
-data = {i : 0 for i in range(41)}
-# 숫자의 최대값이 40 
+from typing import Deque
 
-result = [[0, 0] for i in range(41)]
 
-result[0][0] = 1
-result[1][1] = 1  
+N, r, c = map(int, input().split())
 
-def fibo(n):
-    if n == 0:        
-        return 0
-    elif n == 1:
-        return 1
-    elif data[n] > 0:
-        return data[n] 
-    else:
-        data[n] = fibo(n-1) + fibo(n-2)
-        result[n][0], result[n][1] = result[n-1][0] + result[n-2][0], result[n-1][1] + result[n-2][1]
-        return data[n]
+l = 2 ** N
 
-for i in range(n):
-    num = int(sys.stdin.readline().rstrip())
+q = deque()
 
-    fibo(num)
+def recursiveZ (x, y, l):
+    if l == 2:
+        q.append((x,y))
+        q.append((x,y+1))
+        q.append((x+1,y))
+        q.append((x+1,y+1))
     
-    sys.stdout.write(str(result[num][0]) +' '+ str(result[num][1]) +'\n')
+    elif l > 2 :
+        dividedL = l//2
+        if r < dividedL and c < dividedL:
+            recursiveZ(x ,y, l//2)
+        elif r < dividedL and c >= dividedL:
+            recursiveZ(x ,y+dividedL,l//2)
+        elif r >= dividedL and c < dividedL:
+            recursiveZ(x+dividedL, y,l//2)
+        elif r >= dividedL and c >= dividedL:
+            recursiveZ(x+dividedL, y+dividedL,l//2)
+                
+count = 0
+
+recursiveZ(0,0,l)
+
+for data in q :
+    count+=1
+    if data[0] == r and data[1] == c:
+        print(count-1) 
+        # 0번째부터 시작하므로 마지막에 1을 빼준다.
