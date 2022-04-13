@@ -11,7 +11,7 @@ l = 2 ** N
 q = deque()
 
 def recursiveZ (x, y, l, startIndex):
-    global answer
+    global answer, r, c
     if l == 2:
         if (x,y) == (r,c):
             answer = startIndex
@@ -23,19 +23,25 @@ def recursiveZ (x, y, l, startIndex):
             answer = startIndex + 3 
 
     elif l > 2 :
-        dividedL = l//2
+        dividedL = l // 2        
         if r < dividedL and c < dividedL:
             recursiveZ(x ,y, dividedL, startIndex)
         elif r < dividedL and c >= dividedL:
-            recursiveZ(x ,y+dividedL,dividedL, startIndex+(dividedL**2))
+            c -= dividedL
+            recursiveZ(x ,y,dividedL, startIndex+(dividedL**2))
         elif r >= dividedL and c < dividedL:
-            recursiveZ(x+dividedL, y,dividedL, startIndex + (dividedL**2) * 2)
+            r -= dividedL
+            recursiveZ(x, y,dividedL, startIndex + (dividedL**2) * 2)
         elif r >= dividedL and c >= dividedL:
-            recursiveZ(x+dividedL, y+dividedL,dividedL, startIndex+ (dividedL**2) * 3)
+            r -= dividedL
+            c -= dividedL
+            recursiveZ(x, y,dividedL, startIndex+ (dividedL**2) * 3)
+
 answer = 0
 
 recursiveZ(0,0,l,0)
 
 print(answer)
 
-# 분할정복 & 재귀 https://ggasoon2.tistory.com/11
+# 모든 좌표를 0으로 조정해서 해결
+!!
