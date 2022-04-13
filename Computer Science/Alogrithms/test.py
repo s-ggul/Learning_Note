@@ -1,3 +1,4 @@
+#1074번 Z
 from collections import deque
 
 from typing import Deque
@@ -9,30 +10,30 @@ l = 2 ** N
 
 q = deque()
 
-def recursiveZ (x, y, l):
+def recursiveZ (x, y, l, count):
+    global answer
     if l == 2:
-        q.append((x,y))
-        q.append((x,y+1))
-        q.append((x+1,y))
-        q.append((x+1,y+1))
-    
+        if (x,y) == (r,c):
+            answer = count
+        elif (x,y+1) == (r,c): 
+            answer = count + 1
+        elif (x+1,y) == (r,c): 
+            answer = count + 2
+        elif (x+1,y+1) == (r,c): 
+            answer = count + 3 
+
     elif l > 2 :
         dividedL = l//2
         if r < dividedL and c < dividedL:
-            recursiveZ(x ,y, l//2)
+            recursiveZ(x ,y, dividedL, count)
         elif r < dividedL and c >= dividedL:
-            recursiveZ(x ,y+dividedL,l//2)
+            recursiveZ(x ,y+dividedL,dividedL, count+(dividedL**2))
         elif r >= dividedL and c < dividedL:
-            recursiveZ(x+dividedL, y,l//2)
+            recursiveZ(x+dividedL, y,dividedL, count + (dividedL**2) * 2)
         elif r >= dividedL and c >= dividedL:
-            recursiveZ(x+dividedL, y+dividedL,l//2)
-                
-count = 0
+            recursiveZ(x+dividedL, y+dividedL,dividedL, count+ (dividedL**2) * 3)
+answer = 0
 
-recursiveZ(0,0,l)
+recursiveZ(0,0,l,0)
 
-for data in q :
-    count+=1
-    if data[0] == r and data[1] == c:
-        print(count-1) 
-        # 0번째부터 시작하므로 마지막에 1을 빼준다.
+print(answer)
