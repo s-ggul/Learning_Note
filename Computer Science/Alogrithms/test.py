@@ -34,6 +34,8 @@ for i in range(m):
 
 min_bacon = 0
 
+result = 0
+
 for i in range(n):
     count = bfs(i)
     if i == 0:
