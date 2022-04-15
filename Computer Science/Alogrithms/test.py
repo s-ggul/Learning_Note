@@ -1,9 +1,4 @@
-import collections
-
-
 from collections import deque
-from queue import Empty
-
 
 # 두 노드간 최단 경로를 찾아야 하므로 bfs를 이용한다.
 
@@ -15,20 +10,6 @@ for i in range(m):
     a,b = map(int,input().split())
     relation_map[a-1].append(b-1)
     relation_map[b-1].append(a-1)
-
-def bfs(root):
-    
-
-min_kevin_bacon = m
-
-for i in range(n):
-    min_count = bfs(i)
-    if min_kevin_bacon > min_count:
-        min_kevin_bacon = min_count
-
-print(min_kevin_bacon)
-
-
 
 # DFS & BFS 차이 : https://velog.io/@lucky-korma/DFS-BFS%EC%9D%98-%EC%84%A4%EB%AA%85-%EC%B0%A8%EC%9D%B4%EC%A0%90
 
