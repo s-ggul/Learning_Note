@@ -77,3 +77,53 @@ def solution(board, moves):
                 
     return count
 '''
+'''
+2019 KAKAO BlIND RECRUITMENT - 실패율
+def solution(N, stages):
+    answer= []
+    totalUser=len(stages)
+    count = {}
+    for i in range(N):
+        count[i+1] = 0
+        
+    stages.sort()
+    
+    for stage in stages:
+        if stage == N+1:
+            continue
+        else:
+            count[stage] += 1
+    
+    failure = {}
+    
+    for i in range(1,N+1):
+        if totalUser == 0:
+            failure[i] = 0
+        else:    
+            failure[i] = count[i]/totalUser     
+        totalUser -= count[i]
+    
+    answerHash = sorted(failure.items(), key = lambda item : item[1],reverse=True)
+    #Value를 기준으로 내림차순 정렬
+    
+    for i in range(len(answerHash)):
+        answer.append(answerHash[i][0])
+        
+    return answer
+
+=> 다른 사람들의 풀이중 기가맥힌것
+
+def solution(N, stages):
+    result = {}
+    denominator = len(stages)
+    for stage in range(1, N+1):
+        if denominator != 0:
+            count = stages.count(stage)
+            result[stage] = count / denominator
+            denominator -= count
+        else:
+            result[stage] = 0
+    return sorted(result, key=lambda x : result[x], reverse=True)
+
+
+'''
