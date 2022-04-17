@@ -127,3 +127,74 @@ def solution(N, stages):
 
 
 '''
+'''
+2018 카카오 Blind Recruitment 1차 비밀지도
+def solution(n, arr1, arr2):
+    answer = []
+
+    for i in range(n):
+        bitStr = bin(arr1[i] | arr2[i])      
+        temp = ''
+        bitStr = bitStr[2:]
+        bitStr = bitStr.rjust(n,'0') 
+        #bin() 을 이용하면 맨앞에 0인 부분을 없애버리기에 길이를 맞춰줘야함 => 주의
+        
+        #bitStr에는 '0b' 가 앞에 포함되어있음
+        
+        for c in bitStr:
+            if c == '1':
+                temp += '#'
+            elif c == '0':
+                temp += ' '
+        answer.append(temp)
+        
+    return answer
+'''
+
+def solution(dartResult):
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    divided = []
+    answer = []
+    temp = ''
+    
+    for i in range(len(dartResult)):
+        if dartResult[i] in numbers and i == 0:
+            temp += dartResult[i]
+        elif dartResult[i] in numbers and dartResult[i-1] not in numbers:
+            divided.append(temp)
+            temp = dartResult[i]
+        elif i == len(dartResult) -1 :
+            temp += dartResult[i]
+            divided.append(temp)
+        else:
+            temp += dartResult[i]
+    index = 0
+    score = {i:0 for i in range(3)}
+
+    for expr in divided:
+        tempNum = ''
+        for c in expr :
+            if c in numbers: 
+                tempNum += c
+            else:
+                if score[index] == 0:
+                    score[index] = int(tempNum)
+    
+                if c == 'S':
+                    continue
+                elif c =='D':
+                    score[index] **= 2
+                elif c =='T':
+                    score[index] **= 3
+                elif c == '*':
+                    score[index] *= 2
+                    if index > 0:
+                        score[index-1] *= 2                        
+                elif c == '#':
+                    score[index] *= -1
+        index += 1
+
+    answer = sum(list(score.values()))
+    return answer
+
+print(solution('10D4S10D'))
