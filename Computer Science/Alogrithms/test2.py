@@ -172,13 +172,38 @@ def solution(places):
 # https://www.youtube.com/watch?v=hCVgKE6qwFs 참고하기
 '''
 '''
-2020 카카오 인턴십 - 수식 최대화
 
+코딩테스트 연습
+2020 카카오 인턴십
+수식 최대화
 '''
 import itertools 
 
 def solution(expression):
+    answer = 0
+    opr = set()
+    expr = []
+    tempNum = ''
     
+    for c in expression:
+        if c.isdecimal() == False:    
+            opr.add(c)
+        
+            
+    opr = list(itertools.permutations(opr))
+    # 우선순위 모든 순열 고려
+
+    print(opr)
+    
+           
+                  
     return answer
 
 print(solution("100-200*300-500+20"))
+
+
+
+
+
+
+
