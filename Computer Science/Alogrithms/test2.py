@@ -162,3 +162,11 @@ def solution(str1, str2):
     알파벳문자열인지 확인할때 string.isalpha() 사용할 수 있음!!! 참고할것.
 '''
 
+def solution(places):
+    answer = []
+    '''
+    각 P에서부터 bfs를 돌아 그때 맨해튼 거리를 체크
+    '''
+    return answer
+
+# https://www.youtube.com/watch?v=hCVgKE6qwFs 참고하기
