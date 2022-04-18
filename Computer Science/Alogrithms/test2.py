@@ -194,9 +194,7 @@ def solution(expression):
     # 우선순위 모든 순열 고려
 
     print(opr)
-    
-           
-                  
+
     return answer
 
 print(solution("100-200*300-500+20"))
