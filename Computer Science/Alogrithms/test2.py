@@ -161,12 +161,24 @@ def solution(str1, str2):
     return int((len(intersection)/total) *  65536)
     알파벳문자열인지 확인할때 string.isalpha() 사용할 수 있음!!! 참고할것.
 '''
-
+'''
 def solution(places):
     answer = []
-    '''
+    
     각 P에서부터 bfs를 돌아 그때 맨해튼 거리를 체크
-    '''
+    
     return answer
 
 # https://www.youtube.com/watch?v=hCVgKE6qwFs 참고하기
+'''
+'''
+2020 카카오 인턴십 - 수식 최대화
+
+'''
+import itertools 
+
+def solution(expression):
+    
+    return answer
+
+print(solution("100-200*300-500+20"))
