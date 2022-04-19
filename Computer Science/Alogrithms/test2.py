@@ -266,12 +266,52 @@ def calExpr(op, n, expression):
     # [참고] : https://soniacomp.medium.com/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%88%98%EC%8B%9D%EC%B5%9C%EB%8C%80%ED%99%94-%ED%8C%8C%EC%9D%B4%EC%8D%AC-2020-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4%EC%8B%AD-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-e43e53ae19b6
 
 '''
-from collections import deque
 
+'''
+2020 KAKAO BLIND RECRUITMENT - 괄호 변환
+
+def check(p):
+    count = 0
+    for c in p:
+        if c == '(':
+            count += 1
+        else:
+            count-=1
+            if count < 0:
+                return False
+    return True
+
+def recursive(p):
+    countL = 0
+    countR = 0
+    if p == '':
+        return ''
+
+    for i in range(len(p)):
+        if p[i] == '(':
+            countL += 1
+        elif p[i] == ')':
+            countR += 1
+
+        if countL >0 and countR> 0 and countL == countR:
+            u = p[:i+1]
+            break
+
+    if check(u):
+        return u + recursive(p[i+1:])
+    else:
+        temp = ''
+        u = u[1:len(u)-1]
+        for c in u:
+            if c == '(':
+                temp+= ')'
+            else: 
+                temp+= '('
+
+        return '(' + recursive(p[i+1:]) + ')' + temp
+    
 
 def solution(p):
-    answer = ''
+    answer = recursive(p)
     return answer
-
-print(solution('()))((()'))
-print(solution('(()())()'))
+'''
