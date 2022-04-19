@@ -315,3 +315,34 @@ def solution(p):
     answer = recursive(p)
     return answer
 '''
+'''
+2019 카카오 개발자 겨울 인턴십 - 튜플
+
+def solution(s):
+    count = {}
+    data = []
+    
+    tempS = ''
+    for c in s:
+        if c =='{' or c == '}':
+            continue
+        else:
+            tempS += c
+    
+    data = list(map(int, tempS.split(',')))
+
+    for e in data:
+        count[e] = 0
+    
+    for e in data:
+        count[e] += 1
+
+    result = sorted(count.items(), key = lambda item : item[1], reverse=True)
+
+    answer = []
+
+    for k, v in result:
+        answer.append(k)
+    
+    return answer
+'''
