@@ -162,14 +162,56 @@ def solution(str1, str2):
     알파벳문자열인지 확인할때 string.isalpha() 사용할 수 있음!!! 참고할것.
 '''
 '''
-def solution(places):
-    answer = []
-    
-    각 P에서부터 bfs를 돌아 그때 맨해튼 거리를 체크
-    
-    return answer
+2021 카카오 채용연계형 인턴십 - 거리두기 확인하기
 
-# https://www.youtube.com/watch?v=hCVgKE6qwFs 참고하기
+from collections import deque 
+
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
+
+def bfs(graph, x, y):
+    visited = [[False for _ in range(5)] for _ in range(5)]
+    q = deque()
+    q.append((x,y,0))
+    visited[x][y] = True
+
+    while len(q) != 0:
+        x, y, d = q.popleft()
+        if d == 2:
+            continue
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx < 5 and 0 <= ny < 5 :
+                if visited[nx][ny] == True:
+                    continue
+                
+                visited[nx][ny] = True
+                
+                if graph[nx][ny] == 'X':
+                    continue
+                elif graph[nx][ny] == 'P':
+                    return False
+                elif graph[nx][ny] == 'O':
+                    q.append((nx,ny,d+1))
+    return True
+
+def solution(places):
+    
+    answer = []
+    for place in places:
+        result= []
+        for i in range(len(place)):
+            for j in range(len(place[i])):
+                if place[i][j] == 'P':
+                    result.append(bfs(place,i,j))
+        if False in result:
+            answer.append(0)
+        else:
+            answer.append(1)
+    return answer
 '''
 '''
 2020 카카오 인턴십 - 수식 최대화
@@ -224,14 +266,7 @@ def calExpr(op, n, expression):
     # [참고] : https://soniacomp.medium.com/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%88%98%EC%8B%9D%EC%B5%9C%EB%8C%80%ED%99%94-%ED%8C%8C%EC%9D%B4%EC%8D%AC-2020-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4%EC%8B%AD-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-e43e53ae19b6
 
 '''
-from collections import deque 
 
-dx = [-1,1,0,0]
-dy = [0,0,-1,1]
-
-def solution(places):
-    
-    return answer
 
 print(solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]))
 
