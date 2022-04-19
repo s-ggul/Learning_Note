@@ -172,11 +172,8 @@ def solution(places):
 # https://www.youtube.com/watch?v=hCVgKE6qwFs 참고하기
 '''
 '''
+2020 카카오 인턴십 - 수식 최대화
 
-코딩테스트 연습
-2020 카카오 인턴십
-수식 최대화
-'''
 import itertools 
 
 def solution(expression):
@@ -193,12 +190,40 @@ def solution(expression):
     opr = list(itertools.permutations(opr))
     # 우선순위 모든 순열 고려
 
-    print(opr)
+    result = []
+    if len(opr) > 1: 
+        for order in opr:
+            result.append(abs(int(calExpr(order, 0, expression))))
+    else: 
+        result.append(abs(int(eval(expression))))
+        # 연산자가 한개인 경우
+    answer = max(result)
 
     return answer
 
-print(solution("100-200*300-500+20"))
-# 이거 식 쪼개는 방식 무조건 공부하기
+#print(solution("100-200*300-500+20"))
+#이거 식 쪼개는 방식 무조건 공부하기
+#정말 유용하게 쓰일듯한 코드
+
+def calExpr(op, n, expression): 
+    if n == 2:
+        return str(eval(expression))
+    
+    if op[n] == '+':
+        temp = str(eval('+'.join([calExpr(op, n+1, e) for e in expression.split('+')])))
+    
+    elif op[n] == '-':
+        temp = str(eval('-'.join([calExpr(op, n+1, e) for e in expression.split('-')])))
+    
+    elif op[n] == '*':
+        temp = str(eval('*'.join([calExpr(op, n+1, e) for e in expression.split('*')])))
+
+    return temp
+    # 이부분은 코드를 참고함
+    # [참고] : https://soniacomp.medium.com/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%88%98%EC%8B%9D%EC%B5%9C%EB%8C%80%ED%99%94-%ED%8C%8C%EC%9D%B4%EC%8D%AC-2020-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4%EC%8B%AD-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-e43e53ae19b6
+
+'''
+
 
 
 
