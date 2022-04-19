@@ -206,7 +206,8 @@ def solution(expression):
 #정말 유용하게 쓰일듯한 코드
 
 def calExpr(op, n, expression): 
-    if n == 2:
+    if n == 2: 
+        # 즉 우선순위가 제일 높은게 op 의 원소 중 가장마지막에 있음
         return str(eval(expression))
     
     if op[n] == '+':
@@ -223,9 +224,15 @@ def calExpr(op, n, expression):
     # [참고] : https://soniacomp.medium.com/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%88%98%EC%8B%9D%EC%B5%9C%EB%8C%80%ED%99%94-%ED%8C%8C%EC%9D%B4%EC%8D%AC-2020-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4%EC%8B%AD-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-e43e53ae19b6
 
 '''
+from collections import deque 
 
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
 
+def solution(places):
+    
+    return answer
 
-
+print(solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]))
 
 
