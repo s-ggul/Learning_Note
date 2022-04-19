@@ -266,8 +266,34 @@ def calExpr(op, n, expression):
     # [참고] : https://soniacomp.medium.com/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%88%98%EC%8B%9D%EC%B5%9C%EB%8C%80%ED%99%94-%ED%8C%8C%EC%9D%B4%EC%8D%AC-2020-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4%EC%8B%AD-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-e43e53ae19b6
 
 '''
+from collections import deque
 
+def check(p):
+    st = deque(p)
 
-print(solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]))
+def recursive(p):
+    countL = 0
+    countR = 0
+    if p == '':
+        return ''
+    
+    for i in range(len(p)):
+        if p[i] == '(':
+            countL += 1
+        elif p[i] == ')':
+            countR += 1
+        elif countL == countR:
+            u = p[:i+1]
+            v = p[i+1:]
+    
+    if check(u) == True:
+        v = recursive(v)
+    else:
+        
+    
+def solution(p):
+    answer = ''
+    return answer
 
-
+print(solution('()))((()'))
+print(solution('(()())()'))
