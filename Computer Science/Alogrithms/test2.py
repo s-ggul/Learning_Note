@@ -268,29 +268,7 @@ def calExpr(op, n, expression):
 '''
 from collections import deque
 
-def check(p):
-    st = deque(p)
 
-def recursive(p):
-    countL = 0
-    countR = 0
-    if p == '':
-        return ''
-    
-    for i in range(len(p)):
-        if p[i] == '(':
-            countL += 1
-        elif p[i] == ')':
-            countR += 1
-        elif countL == countR:
-            u = p[:i+1]
-            v = p[i+1:]
-    
-    if check(u) == True:
-        v = recursive(v)
-    else:
-        
-    
 def solution(p):
     answer = ''
     return answer
