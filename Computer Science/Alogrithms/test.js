@@ -303,10 +303,58 @@ function solution(numbers, hand) {
 2019 카카오 개발자 겨울 인턴십
 크레인 인형뽑기 게임
 
-*/
 
 function solution(board, moves) {
     var answer = 0;
+    var result = [];
+
+    for(const e of moves)
+    {
+        var floor = e - 1;
+        for(var i =0; i< board.length; i++)
+        {
+            var data = board[i][floor];
+
+            if (data !== 0)
+            {
+                if (result.length === 0)
+                {
+                    result.push(data);
+                }
+                else
+                {
+                    var trg = result.pop();
+
+                    if (trg === data)
+                    {
+                        answer += 2
+                    }
+                    else
+                    {
+                        result.push(trg);
+                        result.push(data);
+                    }
+                }
+
+                board[i][floor] = 0;
+                break            
+            }
+        }
+    }
+    return answer;
+}
+*/
+/*
+코딩테스트 연습
+2019 KAKAO BLIND RECRUITMENT
+실패율
+
+*/
+function solution(N, stages) {
+    var answer = [];
+
+    
     return answer;
 }
 
+console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]));
