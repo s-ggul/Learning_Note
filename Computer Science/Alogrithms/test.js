@@ -415,6 +415,47 @@ function solution(N, stages) {
 }
 
 */
+/*
+2018 KAKAO BLIND RECRUITMENT - [1차] 비밀지도
 
+function solution(n, arr1, arr2) {
+    var answer = [];
+    
+    for (var i = 0; i < n; i++){
+        answer.push((arr1[i] | arr2[i]).toString(2));
+    }
+    
+    answer = [...answer].map(item => {
+            if (item.length < n){
+                while (item.length !== n)
+                {
+                    item = '0' + item;
+                }
+            }
+            reg0 = new RegExp(/0/,'g');
+            reg1 = new RegExp(/1/,'g');
+            item = item.replace(reg0,' ');
+            item = item.replace(reg1,'#');
 
-console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]));
+            return item;
+    });
+
+    return answer;
+}
+
+*/
+
+function solution(s) {
+    var answer = 0;
+    var compressed = [];
+
+    for (var i = 1; i<=s.length; i++)
+    {
+
+    }
+    console.log(compressed);
+
+    return answer;
+}
+
+console.log(solution("aabbaccc"));
