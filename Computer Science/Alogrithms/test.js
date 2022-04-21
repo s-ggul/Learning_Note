@@ -349,12 +349,72 @@ function solution(board, moves) {
 2019 KAKAO BLIND RECRUITMENT
 실패율
 
-*/
 function solution(N, stages) {
     var answer = [];
+    var result = new Map();
 
-    
+    for (num of stages)
+    {
+        if (num > N)
+        {
+            continue;
+        }
+        result.set(num, result.get(num) + 1 || 1);
+    }
+
+
+    var count = stages.length;
+
+    for (var i = 1; i <= N; i++)
+    {
+        var data = result.get(i)
+        if (isNaN(data))
+        {
+            result.set(i,0);
+            continue;
+        }
+        result.set(i,(data / count));
+        count -= data;
+    }
+
+    const sortedMap = new Map([...result.entries()].sort((a,b) => {
+        if (b[1] > a[1])
+        {
+            return 1;
+        }
+        else if (b[1] == a[1])
+        {
+            if (a[0] > b[0])
+            {
+                return 1;
+            }
+            else{
+                return -1;
+            }
+        }
+        else{
+            return -1;
+        }
+    }));
+    answer = [...sortedMap.keys()];
     return answer;
 }
+
+
+//다른 닝겐의 기가맥힌 풀이
+function solution(N, stages) {
+    let result = [];
+    for(let i=1; i<=N; i++){
+        let reach = stages.filter((x) => x >= i).length;
+        let curr = stages.filter((x) => x === i).length;
+        result.push([i, curr/reach]);
+    }
+    
+    result.sort((a,b) => b[1] - a[1]);
+    return result.map((x) => x[0]);
+}
+
+*/
+
 
 console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]));
