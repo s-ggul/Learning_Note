@@ -445,17 +445,68 @@ function solution(n, arr1, arr2) {
 
 */
 
+/*
+2020 KAKAO BLIND RECRUITMENT
+문자열 압축
+
 function solution(s) {
     var answer = 0;
+    var minLenWord = s;
     var compressed = [];
 
     for (var i = 1; i<=s.length; i++)
     {
+        var index = 0;
+        var words = [];
 
+        while (index <= s.length){
+            var data = s.slice(index,index+i)
+            if (data !== ''){
+                words.push(data);
+            }
+            index += i
+        }
+        
+        var temp = '';  
+        var base = words[0];
+        var count = 1;
+
+        for(var j = 1; j<= words.length; j++){
+            if (j === words.length){
+                if (count >1)
+                {
+                    temp += count.toString() + base;
+                }
+                else{
+                    temp += base;
+                }
+            }
+            else if (base === words[j])
+            {
+                count += 1;
+            }
+            else
+            {
+                if (count > 1){
+                    temp += count.toString() + base;
+                }
+                else{
+                    temp += base;
+                }
+
+                base = words[j];
+                count = 1;
+            }
+        }
+    
+        if (temp.length < minLenWord.length)
+        {
+            minLenWord = temp;
+        }
     }
-    console.log(compressed);
-
+    answer = minLenWord.length;
     return answer;
 }
+ */
 
 console.log(solution("aabbaccc"));
