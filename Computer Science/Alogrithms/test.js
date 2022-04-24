@@ -1,7 +1,6 @@
 /*
 2020 KAKAO BLIND RECRUITMENT - 괄호 변환
 
-
 function solution(p) {
     var answer = '';
 
@@ -157,7 +156,7 @@ function solution(str1, str2) {
 /*
 2020 카카오 인턴십 - 수식 최대화
 
-*/
+
 function solution(expression) {
     var orders = [
         ['*', '+', '-'],
@@ -170,7 +169,10 @@ function solution(expression) {
     let answer = -1;
     for (const order of orders){
         var res = parseInt(recursive(order,0,expression));
-        if (res < answer)
+
+        res= Math.abs(res);
+        
+        if (res > answer)
         {
             answer = res;
         }
@@ -182,7 +184,6 @@ function solution(expression) {
 
 function recursive(order,n, expr)
 {
-    let temp = [];
     if (n == 2)
     {
         return eval(expr);
@@ -191,19 +192,39 @@ function recursive(order,n, expr)
     {
         if (order[n] == '*')
         {
-            
+            let temp = expr.split('*');
+            let val = [];
+            for (const e of temp)
+            {
+                val.push(recursive(order, n + 1, e));        
+            }
+            return eval(val.join('*'));
         }
         else if(order[n] == '-')
         {   
-            
+            let temp = expr.split('-');
+            let val = [];
+            for (const e of temp)
+            {
+                val.push(recursive(order, n + 1, e));        
+            }
+            return eval(val.join('-'));
         }
         else if(order[n] == '+')
         {
-            
+            let temp = expr.split('+');
+            let val = [];
+            for (const e of temp)
+            {
+                val.push(recursive(order, n + 1, e));        
+            }
+            return eval(val.join('+'));
         }
     }
     return temp;
 }
 
+
+*/
 console.log(solution("100-200*300-500+20"));
 console.log(solution("50*6-3*2"));
