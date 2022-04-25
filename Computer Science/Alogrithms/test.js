@@ -1,230 +1,65 @@
 /*
-2020 KAKAO BLIND RECRUITMENT - 괄호 변환
+코딩테스트 연습
+2021 KAKAO BLIND RECRUITMENT
+메뉴 리뉴얼
+*/
+let data = new Map();
 
-function solution(p) {
-    var answer = '';
+function solution(orders, course) {
+    var answer = [];
 
-    answer = recursive(p)
+    for (const num of course){
+        for (const order of orders)
+        {
+            dataParse(order, num);
+        }
+    }
+    // 데이터 조합을 찾아 맵핑해주는 함수
+
+
+    data = [...data].sort((a,b) => b[1] - a[1]);
+
+    for (const num of course){
+        let maxCount = -1;
+        for (const e of data){
+            if (e[0].length == num)
+            {
+                if (maxCount == -1)
+                {
+                    maxCount = e[1];
+                    answer.push(e[0]);
+                }
+                else{
+                    if (e[1] == maxCount)
+                    {
+                        answer.push(e[0]);
+                    }
+                    else if(e[1] < maxCount)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    answer = answer.sort();
     return answer;
 }
 
-function recursive(p)
-{
-    if (p === '')
-    {
-        return '';
-    }
-    else
-    {
-        let countL = 0;
-        let countR = 0;
-        let u = '';
-        let v = '';
-
-        for (let i =0; i < p.length; i++)
-        {
-            if (p[i] === '(')
-            {
-                countL += 1;
-            }
-            else
-            {
-                countR += 1;
-            }
-
-            if (countL === countR)
-            {
-                u = p.slice(0,i+1);
-                v = p.slice(i+1,p.length);
-                break;
-            }
-        }
-
-        if (checkOk(u))
-        {
-            return u + recursive(v);
-        }
-        else
-        {
-            let temp = '';
-            u = u.slice(1,u.length-1);
-            for (const c of u)
-            {
-                if (c === '(')
-                {
-                    temp += ')';
-                }
-                else
-                {
-                    temp += '(';
-                }
-            }
-
-            return '(' + recursive(v) + ')' + temp;
-        }
-    }
-}
-
-function checkOk(p)
-{
-    let data = [];
-    for (const c of p)
-    {
-        if (c === '(')
-        {
-            data.push(c);
-        }
-        else
-        {
-            let d = data.pop();
-        }
-    }
-
-    if (data.length === 0)
-    {
-        return true;
-    }else{
-        return false;
-    }
-}
-*/
-
-/*
-2018 KAKAO BLIND RECRUITMENT - [1차] 뉴스 클러스터링
-
-- 다중 집합의 원리를 잘 파악해야 했음 
-
-function divide(p)
-{
-    let temp = [];
-    let reg = new RegExp(/[a-z][a-z]/);
-
-    for (let i =0; i < p.length-1; i ++){
-        var data = p.slice(i,i+2);
-
-        if (reg.test(data)){
-            temp.push(data);
-        }
-    }
-    return temp
-}
-
-
-function solution(str1, str2) {
-    var answer = 0;
-    let strD1 = divide(str1.toLowerCase()); 
-    let strD2 = divide(str2.toLowerCase());
-    let temp = strD2.slice();//strD2를 깊은 복사
-
-    let intersection = [...strD1].filter(x => {
-        if (temp.includes(x))
-        {
-            temp.splice(temp.indexOf(x),1)
-            return true;
-        }
-        else{
-            return false;
-        }
-    });
-
-    let tempInter = intersection.slice();
-    //intersection을 깊은 복사
-
-    let total = [...strD1].filter(x => {
-        if (tempInter.includes(x))
-        {
-            tempInter.splice(tempInter.indexOf(x),1);
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }).concat(strD2);
-
+function dataParse(s, num){
+    s = [...s].sort();
     
-    if (total.length !== 0){
-        answer = (intersection.length/total.length) * 65536;
-    }
-    else{
-        answer = 65536;
-    }
-
-    return Math.floor(answer);
-}
- */
-/*
-2020 카카오 인턴십 - 수식 최대화
-
-
-function solution(expression) {
-    var orders = [
-        ['*', '+', '-'],
-        ['*', '-', '+'],
-        ['+', '-', '*'],
-        ['+', '*', '-'],
-        ['-', '+', '*'],
-        ['-', '*', '+'],
-    ];
-    let answer = -1;
-    for (const order of orders){
-        var res = parseInt(recursive(order,0,expression));
-
-        res= Math.abs(res);
-        
-        if (res > answer)
-        {
-            answer = res;
-        }
-    }
-
-
-    return answer;
-}
-
-function recursive(order,n, expr)
-{
-    if (n == 2)
+    for (let i =0; i<s.length; i ++)
     {
-        return eval(expr);
-    }
-    else
-    {
-        if (order[n] == '*')
+        for(let j = i+1; j<s.length;j++)
         {
-            let temp = expr.split('*');
-            let val = [];
-            for (const e of temp)
-            {
-                val.push(recursive(order, n + 1, e));        
-            }
-            return eval(val.join('*'));
-        }
-        else if(order[n] == '-')
-        {   
-            let temp = expr.split('-');
-            let val = [];
-            for (const e of temp)
-            {
-                val.push(recursive(order, n + 1, e));        
-            }
-            return eval(val.join('-'));
-        }
-        else if(order[n] == '+')
-        {
-            let temp = expr.split('+');
-            let val = [];
-            for (const e of temp)
-            {
-                val.push(recursive(order, n + 1, e));        
-            }
-            return eval(val.join('+'));
+            data.set(`${[s[i]+s[j]]}`, data.get(`${[s[i]+s[j]]}`) + 1 || 1);
+            // 배열 그대로 사용하게되면 주솟값을 맵핑하는 것 같음 따라서 String으로 변환하고자 JS 템플릿 리터럴을 사용
         }
     }
-    return temp;
 }
 
-
-*/
-console.log(solution("100-200*300-500+20"));
-console.log(solution("50*6-3*2"));
+//console.log(solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4]));
+//console.log(solution(["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"], [2,3,5]));
+console.log(solution(["XYZ", "XWY", "WXA"], [2,3,4]));
