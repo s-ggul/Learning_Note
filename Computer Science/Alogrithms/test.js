@@ -2,7 +2,9 @@
 코딩테스트 연습
 2021 KAKAO BLIND RECRUITMENT
 메뉴 리뉴얼
-*/
+- 보류 - 순열 알고리즘 짜야함 
+
+
 let data = new Map();
 
 function solution(orders, course) {
@@ -63,3 +65,16 @@ function dataParse(s, num){
 //console.log(solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4]));
 //console.log(solution(["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"], [2,3,5]));
 console.log(solution(["XYZ", "XWY", "WXA"], [2,3,4]));
+*/
+
+/*
+2018 KAKAO BLIND RECRUITMENT - 추석 트래픽
+
+*/
+
+function solution(lines) {
+    var answer = 0;
+    return answer;
+}
+
+console.log(solution(["2016-09-15 01:00:04.001 2.0s", "2016-09-15 01:00:07.000 2s"]))
