@@ -68,13 +68,27 @@ console.log(solution(["XYZ", "XWY", "WXA"], [2,3,4]));
 */
 
 /*
-2018 KAKAO BLIND RECRUITMENT - 추석 트래픽
+코딩테스트 연습
+2021 KAKAO BLIND RECRUITMENT
+순위 검색
 
 */
 
-function solution(lines) {
-    var answer = 0;
+function solution(info, query) {
+    var answer = [];
+    let data = [];
+    let q = [];
+    for (let i = 0; i< info.length; i++)
+    {
+        data.push(info[i].split(' '));
+    }
+
+    q = [...query].map(s => { return s.split(' and ')});
+    
+    console.log(q)
+
     return answer;
 }
 
-console.log(solution(["2016-09-15 01:00:04.001 2.0s", "2016-09-15 01:00:07.000 2s"]))
+
+console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
