@@ -103,8 +103,53 @@ function solution(info, query) {
     
     return answer;
 }
+
+console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
+
 */
 
 // 순열과 조합 참고 : https://jun-choi-4928.medium.com/javascript%EB%A1%9C-%EC%88%9C%EC%97%B4%EA%B3%BC-%EC%A1%B0%ED%95%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-21df4b536349
 
-console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
+
+function solution(key, lock) {
+    var answer = true;
+    console.log(rotate90Arr(key))
+
+    
+
+    return answer;
+}
+
+function findKeys(key){
+    
+}
+
+function rotate90Arr(arr){
+    let temp = Array.from(Array(arr.length), () => Array(arr.length).fill(0));
+    for (let i = 0; i<arr.length; i++)
+    {
+        for (let j = 0; j<arr[i].length; j++)
+        {
+            temp[j][(arr.length-1)-i] = arr[i][j];
+        }
+    }
+    return temp;
+ }
+
+function lockToKey(lock)
+{
+    let temp = Array.from(Array(lock.length), () => Array(lock.length).fill(0));
+    for (let i = 0; i<lock.length; i++)
+    {
+        for (let j = 0; j<lock[i].length; j++)
+        {
+            if (lock[i][j] === 0)
+            {
+                temp[i][j] = 1;
+            }
+        }
+    }
+    return temp;
+}
+
+console.log(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1, 0, 1]]));
