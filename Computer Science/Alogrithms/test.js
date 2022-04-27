@@ -72,23 +72,39 @@ console.log(solution(["XYZ", "XWY", "WXA"], [2,3,4]));
 2021 KAKAO BLIND RECRUITMENT
 순위 검색
 
-*/
+// 이 문제도 순열과 조합을 이용하긴 함=> 조합 혹은 순열을 이용해 해당 info의 가능한 모든 조합을 저장해서 탐색하는 방식으로 진행시킨다.
+
+
 
 function solution(info, query) {
-    var answer = [];
-    let data = [];
+    let answer = Array.from(Array(query.length).fill(0));
+    let score = [];
+    let queryScore = [];
     let q = [];
-    for (let i = 0; i< info.length; i++)
-    {
-        data.push(info[i].split(' '));
-    }
-
-    q = [...query].map(s => { return s.split(' and ')});
     
-    console.log(q)
+    let reg = new RegExp(/ and /,'g');
+    query = [...query].map(s => s.replace(reg, ' '));
+    q = [...query].map(s =>{
+        s = s.split(' ');
+        queryScore.push(parseInt(s[4]));
+        s = s.slice(0,4)
+        s = s.join('');
+        return s.split('-');;
+    });
 
+
+    info = [...info].map(s => {
+        s = s.split(' ');
+        score.push(parseInt(s[4]));
+        s = s.slice(0,4);
+        return s.join('');
+    });
+    
+    
     return answer;
 }
+*/
 
+// 순열과 조합 참고 : https://jun-choi-4928.medium.com/javascript%EB%A1%9C-%EC%88%9C%EC%97%B4%EA%B3%BC-%EC%A1%B0%ED%95%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-21df4b536349
 
 console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
