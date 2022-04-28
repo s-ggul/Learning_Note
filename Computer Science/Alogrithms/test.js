@@ -55,48 +55,18 @@ console.log(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1
 // 이 문제도 순열과 조합을 이용하긴 함=> 조합 혹은 순열을 이용해 해당 info의 가능한 모든 조합을 저장해서 탐색하는 방식으로 진행시킨다.
 
 */
-
 function solution(info, query) {
-    let data = new Map();
-    let answer = [];
-    
-
-
-
-    [...info].map((s) => {
-        s = s.split(' ');
-        let value = s.pop();
-        for(let i=s.length; i > 0; i--)
-        {
-            let temp = combination(s, i);
-            for (let element of temp)
-            {   
-                element = element.join('');
-                data.set(element, parseInt(value));
-            }
-        }
-    });
-    
+    var answer = [];
     return answer;
 }
 
-function combination(arr, n)
-{
-    let result = [];
-    if (n === 1)
-    {
-        return arr.map(v => [v]);
-    }
+/*
+1. 먼저 모든 경우에대한 문자열 조합을 만든다. 이때 combination이 아닌 `-`을 포함한 문자열 
+2. 그후 각각의 문자열 별로 점수리스트를 만든다. 
+3. 해당 점수 리스트에서 이분탐색을 진행한다. 
 
-    arr.forEach((fixed, index, origin) => {
-        const rest = origin.slice(index+1);
-        const temp = combination(rest, n-1);
-        const attached = temp.map(a => [fixed, ...a]);
-
-        result.push(...attached);
-    });
-
-    return result;
-}
+굿굿
+이렇게 해보장자라장자자라자라장!
+*/
 
 console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
