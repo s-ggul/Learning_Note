@@ -56,7 +56,28 @@ console.log(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1
 
 */
 function solution(info, query) {
-    var answer = [];
+    let answer = [];
+    let lang = ['cpp','java','python','-'];
+    let part = ['backend', 'frontend', '-'];
+    let career = ['junior', 'senior', '-'];
+    let food = ['chicken', 'pizza', '-'];
+    let data = new Map();
+
+    for (const l of lang)
+    {
+        for(const p of part)
+        {
+            for(const c of career)
+            {
+                for(const f of food)
+                {
+                    data.set(l+p+c+f, []);
+                }
+            }
+        }
+    }
+
+    console.log(data)
     return answer;
 }
 
