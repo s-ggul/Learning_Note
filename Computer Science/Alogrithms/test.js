@@ -67,32 +67,99 @@ query를 순회하면서 query 정보를 문자열 파싱.
 도움 되시길 바라겠습니다!
 
 
+*/
+let data = new Map();
+
+function makeData(info)
+{
+    let scores = [];
+    for(let s of info)
+    {
+        s = s.split(' ');
+        let arr = s.slice(0,4);
+        let score = parseInt(s[4]);
+        scores.push(score);
+
+        arr = arr.map((v) => [v,'-']);
+
+        for(const l of arr[0])
+        {
+            for(const p of arr[1])
+            {
+                for(const d of arr[2])
+                {
+                    for(const f of arr[3])
+                    {
+                        let str = l+p+d+f;
+                        let val = [score]
+                        if(data.has(str))
+                        {
+                            val = [...data.get(str),...val];
+                        }
+                        data.set(str, val);
+                    }   
+                }
+            }    
+        }
+    }
+    let keyList = data.keys();
+
+    for (const key of keyList)
+    {
+        let temp = data.get(key).sort((a,b) => a-b);
+        data.set(key, temp);            
+    }
+}
+
+
 function solution(info, query) {
-    info.forEach((fixed, index, origin) => {
-        
+    let answer = [];
+    makeData(info);
+
+    let reg =new RegExp(/ and /, 'g');
+
+    query.map((s) => {
+        s = s.replace(reg,'');
+        s = s.split(' ');
+
+        if (data.has(s[0])){
+            let tempData = data.get(s[0]);
+            let index = binarySearch(tempData, parseInt(s[1]));
+            answer.push(tempData.length - index);
+        }
+        else{
+            answer.push(0);
+        }
     });
+
+    return answer;
 }
 
 function binarySearch(arr, score){
     let low = 0;
-    let high = arr.length -1;
+    let high = arr.length - 1;
     let mid;
 
-    while (low <= high)
+    while(low < high)
     {
-        mid = Math.floor(low + high / 2);
-
-        if (score > arr[mid])
+        mid = Math.floor((low+high) / 2);
+        // lower bound 사용 high를 mid -1이 아닌 mid로 설정
+        if(arr[mid] >= score)
         {
-            low = mid+1;
+            high = mid;
         }
-        else{
-            high = mid-1;
+        else
+        {
+            low = mid + 1;
         }
     }
-    return low;
+
+    //만일 arr에 score보다 큰 경우가 없는 경우
+    if(arr[high] < score){
+        high += 1;
+    }
+    return high;
 }
 
-console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
 
-*/
+console.log(solution(["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"],["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]));
