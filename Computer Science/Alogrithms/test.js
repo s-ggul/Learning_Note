@@ -47,14 +47,6 @@ function lockToKey(lock)
 console.log(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1, 0, 1]]));
 */
 
-/*
-코딩테스트 연습
-2021 KAKAO BLIND RECRUITMENT
-순위 검색
-
-
-*/
-
 function combination(arr, n){
     let result = [];
 
