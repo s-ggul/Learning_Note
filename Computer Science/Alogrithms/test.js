@@ -65,11 +65,18 @@ function combination(arr, n){
 function solution(relation) {
     var answer = 0;
     let data = new Map();
+    let l = relation[0].length;
 
-    for (let i=0; i< relation.length; i++)
+    const indexArr = Array.from({length:l}, (v,i) => i);
+
+    for (let i =1; i<=l;i++)
     {
-
+        comb = combination(indexArr, i);
+        comb.map((element) => data.set([...element].join(''), []));
     }
+    
+    
+    
     return answer;
 }
 console.log(solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]));
