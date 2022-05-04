@@ -47,6 +47,12 @@ function lockToKey(lock)
 console.log(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1, 0, 1]]));
 */
 
+/*
+
+코딩테스트 연습
+2019 KAKAO BLIND RECRUITMENT
+후보키
+
 function combination(arr, n){
     let result = [];
 
@@ -75,8 +81,194 @@ function solution(relation) {
         comb.map((element) => data.set([...element].join(''), []));
     }
     
+    const keyList = data.keys();
+
+    for (const key of keyList)
+    {
+        let indexData = key.split('');
+
+        for (let i =0; i<relation.length; i++)
+        {
+            let temp = [];
+            for(const index of indexData)
+            {
+                temp.push(relation[i][index]);
+            }
+            
+            let comb = combination(temp, temp.length);
+            let value = data.get(key);
+
+            comb = comb.map((arr) => {
+                arr= arr.join('');
+                value.push(arr);
+            });                
+            data.set(key, value)
+        }
+        
+        let d= data.get(key);
+
+
+        data.set(key,[...new Set(d)]);
+    }
     
+    let tuple = [...data.keys()].filter((key) => data.get(key).length == relation.length);
+    let subKeys = [];
+
+    for(const c of tuple){
+        if (subKeys.length === 0)
+        {
+            subKeys.push(c);
+            continue;
+        }
+        let flag = true;
+        
+
+        for (const key of subKeys)
+        {
+            let count = 0;
+            for (const num of key)
+            {
+                if (c.includes(num)){
+                    count += 1;
+                }
+            }
+
+            if (count === key.length){
+                flag = false;
+                break;
+            }
+        }
+        
+        if (flag)
+        {
+            subKeys.push(c)
+        }
+    }
+    return subKeys.length;
+}
+*/
+
+/*
+코딩테스트 연습
+2018 KAKAO BLIND RECRUITMENT
+[1차] 프렌즈4블록
+
+function checkDelete(arr){
+    let r = arr.length - 1;
+    let c = arr[0].length - 1;
+    let mapData = Array.from(Array(arr.length), ()=>new Array(arr[0].length).fill(true));
+
+    for (let i =0; i< arr.length-1; i++)
+    {
+        for(let j =0; j<arr[i].length -1; j++)
+        {
+            if(arr[i][j] !== ' '){
+                let indexes = [[i,j+1], [i+1,j], [i+1, j+1]];
+                let flag = true;
+                for (const index of indexes){
+                    if (arr[i][j] !== arr[index[0]][index[1]])
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag)
+                {
+                    mapData[i][j] = false;
+                    indexes.map((index) => {
+                        mapData[index[0]][index[1]] = false;
+                    })
+                }
+            }
+        }
+    }
+    return mapData;
+}
+
+function rebuildArray(arr, mapData){
+    let temp = Array.from(Array(arr.length), ()=>Array(arr[0].length).fill(''));
+    for (let i=0;i< arr.length;i++)
+    {
+        for(let j=0;j<arr[i].length;j++)
+        {
+            if (mapData[i][j])
+            {
+                temp[i][j] = arr[i][j];
+            }else{
+                temp[i][j] = ' ';
+            }
+        }
+    }
+    return temp;
+}
+
+function sortColumn(arr){
+    let tempArr = Array.from(Array(arr.length).fill(''))
+    for(let i =0; i< arr[0].length; i++){
+        let temp = '';
+        for (let j =0; j<arr.length;j++)
+        {
+            if (arr[j][i] !== ' ')
+            {
+                temp += arr[j][i];
+            }
+        }
+        
+        while(temp.length < arr.length)
+        {
+            temp = ' ' + temp;
+        }
+        for(let j = arr.length-1; j>=0; j--){
+            tempArr[j] = [...tempArr[j],temp[j]]
+        }
+    }
+    return tempArr;
+}
+
+function checkFalse(mapData)
+{
+    for (let i = 0; i<mapData.length;i++)
+    {
+        for (let j =0; j<mapData[i].length;j++)
+        {
+            if (!mapData[i][j])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function solution(m, n, board) {
+    var answer = 0;
+    let res = sortColumn(rebuildArray(board,checkDelete(board)));
+
+    while (checkFalse(checkDelete(res)))
+    {
+        res = sortColumn(rebuildArray(res, checkDelete(res)));
+    }
     
+    for (let i =0; i<res.length; i++)
+    {
+        for (let j = 0; j<res[i].length;j++)
+        {
+            if (res[i][j] === ' ')
+            {
+                answer+=1;
+            }
+        }
+    }
     return answer;
 }
-console.log(solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]));
+
+*/
+
+/*
+
+코딩테스트 연습
+2018 KAKAO BLIND RECRUITMENT
+[1차] 캐시
+
+*/
