@@ -271,15 +271,43 @@ function solution(m, n, board) {
 2018 KAKAO BLIND RECRUITMENT
 [1차] 캐시
 
-*/
 
 function solution(cacheSize, cities) {
     var answer = 0;
+    let cache = [];
 
-    // 큐를이용해야하며 만일 중간에 hit되는 요소가 있다면 맨뒤로 옮기고 큐가 초과된다면 맨앞을 제거한 후 맨뒤에 붙인다.
-    
+    for (let c of cities)
+    {
+        c = c.toLowerCase();
+        let flag = false;
 
+        cache.map((element) => {
+            if (element === c)
+            {
+                flag = true;
+            }
+        });
+        
+        if (flag)
+        {
+            cache = cache.filter((element) => element !== c);
+            cache.push(c);
+            answer+=1;
+        }
+        else{
+            answer+=5;
+            if(cache.length < cacheSize){
+                cache.push(c);
+            }else if (cache.length === cacheSize && cacheSize !== 0){
+                cache.shift();
+                cache.push(c);
+            }
+        }        
+    }
+    // 약간 큐의 개념을 이용해야하며 만일 중간에 hit되는 요소가 있다면 맨뒤로 옮기고 큐가 초과된다면 맨앞을 제거한 후 맨뒤에 붙인다.
     return answer;
 }
 
-console.log(solution(3,["Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"]));
+*/
+
+
