@@ -272,3 +272,14 @@ function solution(m, n, board) {
 [1차] 캐시
 
 */
+
+function solution(cacheSize, cities) {
+    var answer = 0;
+
+    // 큐를이용해야하며 만일 중간에 hit되는 요소가 있다면 맨뒤로 옮기고 큐가 초과된다면 맨앞을 제거한 후 맨뒤에 붙인다.
+    
+
+    return answer;
+}
+
+console.log(solution(3,["Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"]));
