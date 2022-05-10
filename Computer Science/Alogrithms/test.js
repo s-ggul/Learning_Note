@@ -47,6 +47,14 @@ function lockToKey(lock)
 console.log(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1, 0, 1]]));
 */
 
+/*
+
+코딩테스트 연습
+2019 KAKAO BLIND RECRUITMENT
+후보키
+
+function combination(arr, n){
+    let result = [];
 
 /*
 
@@ -210,35 +218,181 @@ console.log(solution([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]], ["ShiftRow",
 
 */
 
-function solution(alp, cop, problems) {
-    let answer = 0;
-    let data = new Array(problems.length).fill([150,150]);
-    
-    problems = [...problems].sort((a,b) => ((a[0]+a[1]) - (b[0]+b[1])));
-    let index = 0;
+/*
+코딩테스트 연습
+2018 KAKAO BLIND RECRUITMENT
+[1차] 프렌즈4블록
 
-    while( index < problems.length)
+function checkDelete(arr){
+    let r = arr.length - 1;
+    let c = arr[0].length - 1;
+    let mapData = Array.from(Array(arr.length), ()=>new Array(arr[0].length).fill(true));
+
+    for (let i =0; i< arr.length-1; i++)
     {
-        let pALP = problems[index][0];
-        let pCOP = problems[index][1];
-
-        if (alp >= pALP && cop >= pCOP)
+        for(let j =0; j<arr[i].length -1; j++)
         {
-            alp += problems[index][2];
-            cop += problems[index][3];
-            answer+=problems[index][4];
-            index += 1
+            if(arr[i][j] !== ' '){
+                let indexes = [[i,j+1], [i+1,j], [i+1, j+1]];
+                let flag = true;
+                for (const index of indexes){
+                    if (arr[i][j] !== arr[index[0]][index[1]])
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag)
+                {
+                    mapData[i][j] = false;
+                    indexes.map((index) => {
+                        mapData[index[0]][index[1]] = false;
+                    })
+                }
+            }
         }
-        else {
-            let val1 = (pALP - alp);
-            let val2 = (pCOP - cop);
-            alp += val1;
-            cop += val2;
-            answer += val1 + val2;   
+    }
+    return mapData;
+}
+
+function rebuildArray(arr, mapData){
+    let temp = Array.from(Array(arr.length), ()=>Array(arr[0].length).fill(''));
+    for (let i=0;i< arr.length;i++)
+    {
+        for(let j=0;j<arr[i].length;j++)
+        {
+            if (mapData[i][j])
+            {
+                temp[i][j] = arr[i][j];
+            }else{
+                temp[i][j] = ' ';
+            }
+        }
+    }
+    return temp;
+}
+
+function sortColumn(arr){
+    let tempArr = Array.from(Array(arr.length).fill(''))
+    for(let i =0; i< arr[0].length; i++){
+        let temp = '';
+        for (let j =0; j<arr.length;j++)
+        {
+            if (arr[j][i] !== ' ')
+            {
+                temp += arr[j][i];
+            }
+        }
+        
+        while(temp.length < arr.length)
+        {
+            temp = ' ' + temp;
+        }
+        for(let j = arr.length-1; j>=0; j--){
+            tempArr[j] = [...tempArr[j],temp[j]]
+        }
+    }
+    return tempArr;
+}
+
+function checkFalse(mapData)
+{
+    for (let i = 0; i<mapData.length;i++)
+    {
+        for (let j =0; j<mapData[i].length;j++)
+        {
+            if (!mapData[i][j])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function solution(m, n, board) {
+    var answer = 0;
+    let res = sortColumn(rebuildArray(board,checkDelete(board)));
+
+    while (checkFalse(checkDelete(res)))
+    {
+        res = sortColumn(rebuildArray(res, checkDelete(res)));
+    }
+    
+    for (let i =0; i<res.length; i++)
+    {
+        for (let j = 0; j<res[i].length;j++)
+        {
+            if (res[i][j] === ' ')
+            {
+                answer+=1;
+            }
         }
     }
     return answer;
 }
 
-console.log(solution(10,10,[[10,15,2,1,2],[20,20,3,3,4]]))
-console.log(solution(0,0,[[0,0,2,1,2],[4,5,3,1,2],[4,11,4,0,2],[10,4,0,4,2]]))
+*/
+
+/*
+
+코딩테스트 연습
+2018 KAKAO BLIND RECRUITMENT
+[1차] 캐시
+
+
+function solution(cacheSize, cities) {
+    var answer = 0;
+    let cache = [];
+
+    for (let c of cities)
+    {
+        c = c.toLowerCase();
+        let flag = false;
+
+        cache.map((element) => {
+            if (element === c)
+            {
+                flag = true;
+            }
+        });
+        
+        if (flag)
+        {
+            cache = cache.filter((element) => element !== c);
+            cache.push(c);
+            answer+=1;
+        }
+        else{
+            answer+=5;
+            if(cache.length < cacheSize){
+                cache.push(c);
+            }else if (cache.length === cacheSize && cacheSize !== 0){
+                cache.shift();
+                cache.push(c);
+            }
+        }        
+    }
+    // 약간 큐의 개념을 이용해야하며 만일 중간에 hit되는 요소가 있다면 맨뒤로 옮기고 큐가 초과된다면 맨앞을 제거한 후 맨뒤에 붙인다.
+    return answer;
+}
+
+*/
+
+/*
+코딩테스트 연습
+2018 KAKAO BLIND RECRUITMENT
+[3차] 방금그곡
+
+}
+
+ */
+
+
+function solution(m, musicinfos) {
+    var answer = '';
+    return answer;
+}
+
+console.log(solution("ABCDEFG", ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"])); //HELLO
