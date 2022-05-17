@@ -7,7 +7,14 @@ let fs = require('fs');
 let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 */
 
-let input = require('fs').readFileSync('/dev/stdin').toString().split('\r\n');
-let nums = input[0].split(' ')
-nums = nums.map(num => parseInt(num))
-console.log(nums[0] + nums[1])
+// 테스트용 파일 위치 `Computer Science/Alogrithms/백준JS/testCase.txt`
+
+let input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\r\n');
+
+const [n, m] = input[0].split(' ').map(num => parseInt(num))
+
+
+
+function BFS(startNum){
+    // startNum에 대한 케빈베이컨 수를 구함
+}
