@@ -1,0 +1,1 @@
+https://hwasurr.io/api/rest-graphql-differences/
