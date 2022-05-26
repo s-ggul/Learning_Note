@@ -138,7 +138,6 @@
 
 #### TCP의 연결 및 해제 과정
 
-
 <span align='center'>
 
 ![연결 및 해제 과정](./img/TCP%20%EC%97%B0%EA%B2%B0%20%ED%95%B4%EC%A0%9C%20%EA%B3%BC%EC%A0%95.png)
