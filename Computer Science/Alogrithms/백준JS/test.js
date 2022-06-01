@@ -11,3 +11,5 @@ let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 let input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\n');
 
+
+https://www.acmicpc.net/problem/2579
