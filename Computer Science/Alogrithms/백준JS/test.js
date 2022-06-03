@@ -12,7 +12,7 @@ let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 let input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\n');
 const input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().trim().split('\n');
 
-// 둘의 차이를 확인해보자
+// 둘의 차이를 확인하기
 
 let n = Number((Number(input.shift())));
 
