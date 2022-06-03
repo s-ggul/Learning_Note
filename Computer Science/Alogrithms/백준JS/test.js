@@ -55,4 +55,4 @@ function checkOneColor(part){
     return [true,base];
 }
 
-https://www.acmicpc.net/problem/2630
+문제 : https://www.acmicpc.net/problem/2630
