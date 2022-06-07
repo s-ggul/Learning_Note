@@ -9,10 +9,7 @@ let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 // 테스트용 파일 위치 `Computer Science/Alogrithms/백준JS/testCase.txt`
 
-let input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\n');
-const input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().trim().split('\n');
-
-// 둘의 차이를 확인하기
+const input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\n');
 
 let n = Number((Number(input.shift())));
 
@@ -55,4 +52,4 @@ function checkOneColor(part){
     return [true,base];
 }
 
-문제 : https://www.acmicpc.net/problem/2630
+//문제 : https://www.acmicpc.net/problem/2630
