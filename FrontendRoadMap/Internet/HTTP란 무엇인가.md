@@ -180,10 +180,83 @@
 - 위 헤더에 대한 상세 내용은 [여기](https://withbundo.blogspot.com/2017/08/http-17-http-ii-set-cookie-age-www.html)를 참조하도록 하자.
 
 --- 
+### HTTP 응답헤더 두번째 파트
 
-=> [여기](https://withbundo.blogspot.com/2017/08/http-17-http-ii-set-cookie-age-www.html) 정리
+<br />
+
+#### Set-Cookie
+- `쿠키(Cookie)`는 서버에서 클라이언트에게 제공하는 작은 정보로, 상태연결 유지 프로토콜이 아닌 HTTP의 한계(Stateless Protocol)를 극복하게 해준다.
+- 웹서버가 제공하는 쿠키 정보를 클라이언트(웹브라우저)는 자체적으로 저장하고 있다가 같은 웹사이트에 다른 요청을 하는 경우 이 쿠키 정보를 같이 제공하여 웹서버로 하여금 같은 클라이언트임을 확인할 수 있게 해준다. 
+- `쿠키`가 있기 때문에 웹사이트에서 로그인을 하게 되면 이후 요청에 대해서 추가적인 로그인 절차 없이 로그인 정보를 유지할 수 있다.
+- 웹서버가 클라이언트에게 교유한 정보등을 쿠키 정보로 전달하는데 바로 이때 사용되는 응답 헤더가 `Set-Cookie`인 것이다.
+
+<br />
+
+#### Age
+- `Age 헤더`는 응답헤더이며, 캐시서버가 자신이 캐싱하고 있는 컨텐츠가 서비스 할 수 있는 상태인지 아닌지를 판단하는데 사용하는 정보이다. 
+- `Age 헤더`는 값으로 숫자를 사용하며, 숫자의 단위는 초(second)이다.
+- 캐시서버가 `컨텐츠를 저장(캐싱)한 이후 해당 컨텐츠가 캐시서버내에서 머무른 시간` 이라고 이해하는 것이 좋다.
+- `Age 헤더`의 값이 작다는 것은 캐싱된 컨텐츠가 캐시서버에 저장된 후 오래되지 않았다는 것이고 크다는 것은 오래되었다는 것을 의미. 때문에 `Age` 값이 작은 컨텐츠는 실제 서버에서 여전히 사용하고 있을 확률이 높다는 것이고, 값이 큰 컨텐츠는 실제 사용되는 컨텐츠인지 확인이 필효한 것을 의미. => 단, `Age` 값이 크다고 무조건 부정적인 것은 아니다. 캐시서버에 오래 머물렀다해서 서비스하기 부적절한 컨텐츠라는 의미는 아니라는 뜻.
+- `Age 헤더`의 최대값을 설정할 수 있다. 이 최대값은 `Age`가 가질 수 있는 최대값이고 이 최대값까지는 캐시서버가 직접 클라이언트에게 서비스해도 좋다 라는 것을 의미한다.
+- 그렇기 때문에 빈번히 변경되는 이미지와 같은 컨텐츠들은 `Age`값을 작게 가지고, 변경이 많지 않은 성격의 정적인 컨텐츠들은 `Age`값을 크게 두어 캐시서버가 직접 응답할 수 있게 하는 것이 서버 성능 효율면에서 좋다.
+- `Age 헤더`의 최대값은 웹서버가 `Age 헤더`의 최대값을 정해서 캐시서버에게 알려준다. 이때 사용되는 것이 `Cache-Control 헤더`이다.
+- 예를 들자면 만일 `최대값이 600초`로 설정되었다면 응답과 함께 제공한 콘텐츠를 캐시서버가 클라이언트에게 600초 동안은 직접 제공해도 되는 것을 보장한다는 뜻이다.
+- 즉, 이렇게 캐시서버를 활용함으로써 웹서버의 부하를 줄여준다.
+
+<br />
+
+#### WWW-Authenticate
+- 웹서버의 서비스 목적에 따라 허가된 클라이언트에게만 서비스를 제공해야 하는 경우가 있다. 이런 경우 `WWW-Authenticate 헤더`가 사용된다.
+- 로그인을 통해 사용자를 구분하는 로직은 웹어플리케이션 개발자가 ASP, PHP, JSP 등의 소스코드로 직접 구현할 수도 있지만 HTTP 프로토콜에서 제공하는 보안기능을 이용할 수도 있다.
+- `WWW-Authenticate 헤더`에 대한 자세한 내용이 궁금하다면 [여기](https://withbundo.blogspot.com/2017/07/http-12-http-ii-authorization-cookie.html)를 확인하도록 하자.
+
+<br />
+
+#### Proxy-Authenticate
+- `Proxy-Authenticate 헤더`는 `WWW-Authenticate 헤더`와 비슷하지만, 다른 점은 사용자를 인증하는 주체의 차이가 있다. 
+    - `WWW-Authenticate` 헤더를 이용하는 쪽은 웹서버가 클라이언트를 인증하려 할때이고, 
+    - `Proxy-Authenticate` 헤더는 프록시가 클라이언트를 인증할 필요가 있을때 사용된다.
+
+- 클라이언트의 요청에 대하여 `Proxy-Authenticate` 헤더를 응답헤더에 추가하여 보내면 클라이언트는 사용자 인증을 해야한다. 
+- 응답메시지면에서도 차이가 있는데 
+    - `WWW-Authenticate` 헤더를 이용할 경우 `401 Unauthorized`라는 응답메시지를 보내서 인증을 유도하는 반면,
+    - `Proxy-Authenticate` 헤더를 이용할 경우에는 `407 Proxy Authenticate Required`의 상태코드를 사용한다. 
+
+<span align='center'>
+
+![Proxy Auth vs WWW-Auth](./image/Proxy-Authenticate.PNG)
+[출처] : https://withbundo.blogspot.com/2017/08/http-17-http-ii-set-cookie-age-www.html
+
+</span>
+
+<br />
+
+#### Authentication-Info
+- 사용자 인증에 대한 메시지를 교환하는 마지막 단계에 인증이 완료되면, `Authentication-Info` 헤더에 내용을 담아 웹서버는 클라이언트에게 전달한다. 
+- 성공적인 응답을 클라이언트에게 전달할 떄 사용되며, 내용에는 인증 교환에 관련된 추가적인 정보를 담는다.
+-  `Authentication-Info`는 `Proxy-Authenticate 헤더`, `WWW-Authenticate 헤더`와 함께 HTTP 보안에 관련되어 사용되는 헤더이다.
+
+---
+
 
 그리고 이것들도 읽고 정리.
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
 - https://kamranahmed.info/blog/2016/08/13/http-in-depth/
 - https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/
+- https://www.daleseo.com/http-session/
+
+<br /><br />
+---
+### 공부하다 생긴 궁금증
+
+<br />
+
+#### HTTP 1.1 커넥션 유지 & 쿠키
+- HTTP 1.1 에서의 커넥션 유지는 네트워크적인 동작이고, 쿠키는 웹 서비스에서 사용자의 정보를 유지하기 위해 데이터 헤더에 추가하여 사용하는 일종의 `정보` 이므로 커넥션과의 비교는 애초에 옳지 않다.
+
+
+---
+
+<br /><br />
+
+[참조] : https://withbundo.blogspot.com/2017/08/http-17-http-ii-set-cookie-age-www.html
