@@ -115,7 +115,7 @@
 - `HTTP 1.1` 이 등장하면서 새로운 특징들이 나타났다.
     1. 커넥션 유지(Persistent Connection)
     2. 호스트 헤더(Host Header)
-    3. 강력한 인증 절차(Improved Authentication Procedure)\
+    3. 강력한 인증 절차(Improved Authentication Procedure)
 
 ##### 1. 커넥션 유지 (Persistent Connection)
 - HTTP 프로토콜은 클라이언트-서버간 데이터를 주고 받는 응용계층의 프로토콜이다.
