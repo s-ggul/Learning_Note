@@ -337,3 +337,5 @@
 [참조] : https://kamranahmed.info/blog/2016/08/13/http-in-depth/
 [참조] : https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/
 [참조] : https://www.daleseo.com/http-session/
+
+[추가 참조] : https://itrepreneur.tistory.com/4
