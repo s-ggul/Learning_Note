@@ -440,8 +440,13 @@ Content-Type: text/html
 - 클라이언트는 EventSource 인터페이스를 사용하여, 연결을 맺고 이벤트 핸들러를 설정한다. 
 - 클라이언트 브라우저는 HTTP 스트림으로 도착한 메시지를 적절한 Event 객체로 자동 변환하여, 알려진 경우 해당 이벤트 type에 대해 등록된 이벤트 핸들러로 전달하거나 또는 특정 유형의 이벤트가 설정되지 않은 경우에는 onmessage 이벤트 핸들러로 전달한다.
 
+---
+### 현재 공부진행중...
+
+https://kamranahmed.info/blog/2016/08/13/http-in-depth => HTTP/2 부터 읽기.
 
 ---
+
 <br /><br />
 ---
 
@@ -469,7 +474,7 @@ Content-Type: text/html
 
 [참조] : https://withbundo.blogspot.com/2017/08/http-17-http-ii-set-cookie-age-www.html
 [참조] : https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
-[참조] : https://kamranahmed.info/blog/2016/08/13/http-in-depth/
+[참조] : https://kamranahmed.info/blog/2016/08/13/http-in-depth => HTTP/2 부터 읽기.
 [참조] : https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/
 [참조] : https://www.daleseo.com/http-session/
 
