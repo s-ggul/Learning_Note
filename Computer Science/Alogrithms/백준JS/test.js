@@ -9,6 +9,8 @@ let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 // 테스트용 파일 위치 `Computer Science/Alogrithms/백준JS/testCase.txt`
 
+/* 
+풀이중...
 const input = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\n');
 
 let n = Number((Number(input.shift())));
@@ -53,3 +55,20 @@ function checkOneColor(part){
 }
 
 //문제 : https://www.acmicpc.net/problem/2630
+*/
+
+let [n, arr] = require('fs').readFileSync(`Computer Science/Alogrithms/백준JS/testCase.txt`).toString().split('\n');
+
+n = Number(n);
+arr = arr.split(' ').map(n => Number(n))
+
+arr.sort();
+
+let acc = 0;
+let total = 0;
+for(const num of arr){
+    acc += num;
+    total += acc;
+}
+
+console.log(total)
