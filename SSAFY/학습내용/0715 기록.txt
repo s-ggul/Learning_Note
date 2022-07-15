@@ -1,0 +1,68 @@
+pom.xml => 기존 외부에서 만들어진 기능(라이브러리)을 가져와 사용해야할때 기본적으로 필요한 라이브러리들이 명시되어있는 xml파일
+Maven 에러발생시 고쳐지지 않을때 => springFramework 디렉토리를 날리고 다시 STS를 재시작하면 해결가능하다.
+
+src 폴더가 여러갠데 
+
+src/main/java => .java가 들어감
+src/main/resources => xml, yaml, 프로퍼티등이 들어간다. => static에는 html, css, js 등도 들어간다. mapper에는 데이터베이스 쿼리 코드가 들어감
+src/test/java => 테스트 코드가 들어감
+
+------
+Javascript
+
+js는 오버로딩이 안된당
+
+호이스팅 관련 내용 나옴 
+
+```js
+// 기존 코드 
+
+	function a(){
+                console.log(msg);
+                var msg = '홍길동';
+            }
+            a();
+
+// 동작 코드 
+
+	function a(){
+	    var msg;
+                console.log(msg);
+                msg = '홍길동';
+            }
+            a();
+
+// 인자에 대한 내용은 arguments에 들어있음, 인자의 수를 맞추던 맞추지 않던 함수호출이 가능함
+	
+	
+	function a(v1, v2, v3, v4){
+                console.log(arguments.length);
+                console.log(msg);
+                var msg = '홍길동';
+            }
+
+            a();
+            a(1);
+            a(1, 2);
+            a(1, 2, 3);
+            a(1, 2, 3, 4);
+            a(1, 2, 3, 4, 5);
+
+```
+
+
+```js
+	a();// 호이스팅이 일어난다.
+
+            function a(){
+                console.log("a");
+            }
+
+            b(); // b의 경우 함수를 선언하는 것이 아닌 = 연산자에 의한 실행부분이라 호이스팅이 일어나지 않는다.
+            let b = () => {
+                console.log("a");
+            };
+```
+- 호이스팅 관련하여 선언부인지 실행부인지에 대한 시각이 중요 => `=`을 이용한 할당 연산은 실행부분에 속한다.
+
+- `console.dir()` => element자체의 속성을까준다.
